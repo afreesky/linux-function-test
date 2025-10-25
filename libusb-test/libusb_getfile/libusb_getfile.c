@@ -138,8 +138,9 @@ int main(int argc, char *argv[])
 	    return -1;
     }
 
+    len = strlen(fpath);
     // 向bulk endpoint写入数据（OUT endpoint）, 发送请求下载文件名
-    r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_OUT, (unsigned char*)fpath, strlen(fpath), &transferred, 5000);
+    r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_OUT, (unsigned char*)fpath, len, &transferred, 5000);
     if (r == 0 && transferred == len)
     {
         ; // printf("数据发送成功: r:%d, len:%d\n", r, len);
