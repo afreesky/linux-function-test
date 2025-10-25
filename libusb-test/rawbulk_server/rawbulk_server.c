@@ -63,6 +63,8 @@ int main(int argc, char *argv[])
 
             if (bytes_read < BUFFER_SIZE)
                 break;
+
+            printf("write rawbulk %d\n", bytes_write);
         }
 
     }
