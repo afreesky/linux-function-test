@@ -1,0 +1,1 @@
+cmd_/home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.ko /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.o /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.mod.o;  true

@@ -1,0 +1,1 @@
+cmd_/home/alanliu/Projects/modules/ncm/Module.symvers := sed 's/\.ko$$/\.o/' /home/alanliu/Projects/modules/ncm/modules.order | scripts/mod/modpost -m -a  -o /home/alanliu/Projects/modules/ncm/Module.symvers -e -i Module.symvers   -T -

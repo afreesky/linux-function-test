@@ -1,0 +1,1 @@
+cmd_/home/alanliu/Projects/modules/kprobe_carrier_on/modules.order := {   echo /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.ko; :; } | awk '!x[$$0]++' - > /home/alanliu/Projects/modules/kprobe_carrier_on/modules.order

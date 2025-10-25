@@ -1,0 +1,1 @@
+cmd_/home/alanliu/Projects/modules/kprobe_carrier_on/Module.symvers := sed 's/\.ko$$/\.o/' /home/alanliu/Projects/modules/kprobe_carrier_on/modules.order | scripts/mod/modpost -m -a  -o /home/alanliu/Projects/modules/kprobe_carrier_on/Module.symvers -e -i Module.symvers   -T -
