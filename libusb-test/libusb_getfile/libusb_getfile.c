@@ -74,6 +74,7 @@ pid_t libusb_read_bulk(struct libusb_device_handle *handle)
 
     return pid;
 }
+#define BUFFER_LEN 512
 
 int main(int argc, char *argv[])
 {
@@ -82,12 +83,12 @@ int main(int argc, char *argv[])
     int r;                               // 标准返回值
     ssize_t cnt;                         // 字节计数器
     struct libusb_device_handle *handle; // 设备句柄
-    unsigned char data[1024];            // 数据缓冲区
+    unsigned char data[BUFFER_LEN];            // 数据缓冲区
     int transferred;                     // 传输的数据量
     int len = 0;
     char *fpath = 0;
 
-    memset(data, 0, 1024);
+    memset(data, 0, BUFFER_LEN);
 
     if (argc < 2)
     {
