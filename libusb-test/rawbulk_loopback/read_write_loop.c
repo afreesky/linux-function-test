@@ -6,11 +6,14 @@
 
 #define BUFFER_SIZE 1024
 
+/*从设备文件句柄读数据后马上从同一个文件句柄发送出去*/
+
+
 int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+        fprintf(stderr, "Usage: %s <device patch>\n", argv[0]);
         exit(EXIT_FAILURE);
     }
 
