@@ -22,21 +22,20 @@ int main(int argc, char *argv[]) {
     int file_fd = open(argv[2], O_CREAT|O_TRUNC|O_RDWR);
     if (file_fd == -1) {
         perror("open");
-	exit(EXIT_FAILURE);
+	    exit(EXIT_FAILURE);
     }
 
     char buffer[BUFFER_SIZE];
     ssize_t bytes_read, bytes_write;
 
     while ((bytes_read = read(dev_fd, buffer, BUFFER_SIZE)) > 0) {
-	bytes_write = write(file_fd, buffer, bytes_read);
+	    bytes_write = write(file_fd, buffer, bytes_read);
         if( bytes_write != bytes_read) {
-                perror("write");
-                close(file_fd);
-		close(dev_fd);
-                exit(EXIT_FAILURE);
+            perror("write");
+            close(file_fd);
+		    close(dev_fd);
+            exit(EXIT_FAILURE);
 	}
-
 
 	if (bytes_read < BUFFER_SIZE)
 		break;

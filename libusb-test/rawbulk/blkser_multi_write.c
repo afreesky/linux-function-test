@@ -84,8 +84,12 @@ void blkser_wait_pid(pid_t pid)
     } while (!WIFEXITED(wstatus) && !WIFSIGNALED(wstatus));
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 4) {
+int main(int argc, char *argv[]) 
+{
+    int fd1 = -1, fd2 = -1;
+    pid_t pid1 = 0, pid2 = 0;
+
+    if (argc < 3) {
         fprintf(stderr, "Usage: %s <bulkdev> <filename> <filename>   -- copy files to bulk\n", argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -96,16 +100,20 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    int fd1 = open(argv[2], O_RDONLY);
-    if (dev_fd == -1) {
-        perror("open");
-        exit(EXIT_FAILURE);
+    if (argc >= 3) {
+        fd1 = open(argv[2], O_RDONLY);
+        if (dev_fd == -1) {
+            perror("open");
+            exit(EXIT_FAILURE);
+        }
     }
 
-    int fd2 = open(argv[3], O_RDONLY);
-    if (dev_fd == -1) {
-        perror("open");
-        exit(EXIT_FAILURE);
+    if (argc >=4) {
+        fd2 = open(argv[3], O_RDONLY);
+        if (dev_fd == -1) {
+            perror("open");
+            exit(EXIT_FAILURE);
+        }
     }
 
     char buffer[BUFFER_SIZE];
@@ -117,8 +125,13 @@ int main(int argc, char *argv[]) {
         printf("received client data, start file transfer");
     }
 
-    pid_t pid1 = copy_file_with_process(dev_fd, fd1);
-    pid_t pid2 = copy_file_with_process(dev_fd, fd2);
+    if (fd1 > 0) {
+        pid1 = copy_file_with_process(dev_fd, fd1);
+    }
+
+    if (fd2 > 0) {
+        pid2 = copy_file_with_process(dev_fd, fd2);
+    }
 
     while ((bytes_read = read(dev_fd, buffer, BUFFER_SIZE)) > 0)
     {
@@ -133,8 +146,13 @@ int main(int argc, char *argv[]) {
             break;
     }
 
-    blkser_wait_pid(pid1);
-    blkser_wait_pid(pid2);
+    if (pid1 > 0) {
+        blkser_wait_pid(pid1);
+    }
+
+    if (pid2 > 0) {
+        blkser_wait_pid(pid2);
+    }
 
     return EXIT_SUCCESS;
 }
