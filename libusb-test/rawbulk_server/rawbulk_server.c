@@ -26,11 +26,12 @@ int main(int argc, char *argv[])
     }
 
     char buffer[BUFFER_SIZE];
-    ssize_t bytes_read, bytes_write;
+    ssize_t bytes_read, bytes_write, total_write;
     
     while (1)
     {
         memset(buffer, 0, BUFFER_SIZE);
+        total_write = 0;
 
         bytes_read = read(dev_fd, buffer, BUFFER_SIZE);
         if (bytes_read == 0)
@@ -55,6 +56,12 @@ int main(int argc, char *argv[])
         while ((bytes_read = read(file_fd, buffer, BUFFER_SIZE)) > 0)
         {
             bytes_write = write(dev_fd, buffer, bytes_read);
+
+            if (bytes_write)
+            {
+                total_write += bytes_write;
+            }
+            
             if (bytes_write != bytes_read)
             {
                 perror("write");
@@ -63,10 +70,9 @@ int main(int argc, char *argv[])
 
             if (bytes_read < BUFFER_SIZE)
                 break;
-
-            printf("write rawbulk %d\n", bytes_write);
         }
 
+        printf("write rawbulk: %d\n", total_write);
     }
 
     return EXIT_SUCCESS;
