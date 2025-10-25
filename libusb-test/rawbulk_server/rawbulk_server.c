@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
             continue;
 
         memset(file_name_path, 0, 64);
-        snprintf(file_name_path, 63, "/mnt/firmeware/%s", buffer);
+        snprintf(file_name_path, 63, "/mnt/firmware/%s", buffer);
 
         if (access(file_name_path, R_OK))
         {
