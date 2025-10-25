@@ -1,9 +1,17 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(libusb_usb_client)
+project(rawbulk_multiwrite)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+# 指定交叉编译器的路径
+set(CMAKE_C_COMPILER aarch64-linux-gnu-gcc)
+set(CMAKE_CXX_COMPILER aarch64-linux-gnu-g++)
+
+
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 ###############################################################################
 find_package(Threads REQUIRED)
@@ -11,13 +19,12 @@ find_package(Threads REQUIRED)
 
 add_definitions(-D_GNU_SOURCE)
 
-file(GLOB sources libusb_usb_client.c)
+file(GLOB sources blkser_multi_write.c)
 
 # include_directories(sources)
 
 add_executable(${PROJECT_NAME} ${sources})
 
-target_link_libraries(${PROJECT_NAME} usb-1.0)
 target_compile_options(
   ${PROJECT_NAME}
   PRIVATE

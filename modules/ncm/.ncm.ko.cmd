@@ -1,1 +1,0 @@
-cmd_/home/alanliu/Projects/modules/ncm/ncm.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /home/alanliu/Projects/modules/ncm/ncm.ko /home/alanliu/Projects/modules/ncm/ncm.o /home/alanliu/Projects/modules/ncm/ncm.mod.o;  true

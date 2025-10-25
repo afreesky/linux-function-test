@@ -1,1 +1,0 @@
-cmd_/home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.o := ld  -m elf_x86_64 -z noexecstack     -r -o /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.o /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier_on.o

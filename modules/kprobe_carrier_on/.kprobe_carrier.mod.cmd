@@ -1,1 +1,0 @@
-cmd_/home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.mod := { echo  /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier_on.o;  echo; } > /home/alanliu/Projects/modules/kprobe_carrier_on/kprobe_carrier.mod

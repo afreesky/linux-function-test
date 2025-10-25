@@ -2,6 +2,8 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
+
 #include <fcntl.h>
 
 #include <unistd.h>
@@ -28,13 +30,10 @@ void dump_data(unsigned char *ptr, int len)
     printf("\n");
 }
 
-pid_t libusb_read_bulk(int handle)
+pid_t libusb_read_bulk(struct libusb_device_handle *handle)
 {
     unsigned char data[1024];            // 数据缓冲区
     int transferred;                     // 传输的数据量
-    int len = 0;
-    int fd;
-    char *fpath = 0;
     int r;                               // 标准返回值
 
     memset(data, 0, 1024);
@@ -82,7 +81,6 @@ int main(int argc, char *argv[])
     libusb_context *ctx = NULL;          // 创建libusb会话
     int r;                               // 标准返回值
     ssize_t cnt;                         // 字节计数器
-    int i = 0;                           // 设备计数器
     struct libusb_device_handle *handle; // 设备句柄
     unsigned char data[1024];            // 数据缓冲区
     int transferred;                     // 传输的数据量
@@ -148,6 +146,9 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    printf("start receiving process\n");
+    pid_t read_pid = libusb_read_bulk(handle);
+
     // 向bulk endpoint写入数据（OUT endpoint）
     len = read(fd, data, 512);
     while (len > 0)
@@ -175,6 +176,11 @@ int main(int argc, char *argv[])
         fprintf(stderr, "数据接收失败\n");
     }
 #endif
+
+    int wstatus;
+    pid_t w = waitpid(read_pid, &wstatus, WUNTRACED | WCONTINUED);
+    printf("waitpid return %d\n", w);
+
     // 释放接口和关闭设备句柄等清理工作...
     libusb_release_interface(handle, 0); // 释放接口资源
     libusb_close(handle);                // 关闭设备句柄
