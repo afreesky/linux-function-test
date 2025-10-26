@@ -141,8 +141,9 @@ int main(int argc, char *argv[])
 
     do {
         printf("clean buffer... \n");
-        r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_IN, data, sizeof(data), &transferred, 5000);
-        if (r == 0 && transferred == 0)
+        r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_IN, data, sizeof(data), &transferred, 50);
+        printf("r %d, transferred: %d\n", r, transferred);
+	if (r || transferred == 0)
             break;
     }while(1);
 
@@ -171,7 +172,7 @@ int main(int argc, char *argv[])
             printf("收到 %d 字节的数据\n", transferred);
             write(save_fd, data, transferred);
         } else {
-            fprintf(stderr, "数据接收失败\n");
+            fprintf(stderr, "数据接收失败, r:%d, transferred:%d\n", r, transferred);
         }
 
         if (transferred < 512)
