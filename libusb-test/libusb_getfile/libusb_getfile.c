@@ -141,8 +141,8 @@ int main(int argc, char *argv[])
 
     do {
         printf("clean buffer... \n");
-        r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_IN, data, sizeof(data), &transferred, 5000);
-        if (r == 0 && transferred == 0)
+        r = libusb_bulk_transfer(handle, ENDPOINT_ADDRESS | LIBUSB_ENDPOINT_IN, data, sizeof(data), &transferred, 50);
+        if (r || transferred == 0)
             break;
     }while(1);
 
