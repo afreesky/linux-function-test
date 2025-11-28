@@ -14,8 +14,9 @@ add_definitions(-D_GNU_SOURCE)
 file(GLOB sources libusb_getfile.c)
 
 # include_directories(sources)
-
 add_executable(${PROJECT_NAME} ${sources})
+
+target_link_options(${PROJECT_NAME} PRIVATE -Wl,-Map=${PROJECT_NAME}.map)
 
 target_link_libraries(${PROJECT_NAME} usb-1.0)
 target_compile_options(

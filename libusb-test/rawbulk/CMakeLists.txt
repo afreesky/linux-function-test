@@ -24,6 +24,7 @@ file(GLOB sources blkser_multi_write.c)
 # include_directories(sources)
 
 add_executable(${PROJECT_NAME} ${sources})
+target_link_options(${PROJECT_NAME} PRIVATE -Wl,-Map=${PROJECT_NAME}.map)
 
 target_compile_options(
   ${PROJECT_NAME}

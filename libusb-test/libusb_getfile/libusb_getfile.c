@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
             printf("收到 %d 字节的数据\n", transferred);
             write(save_fd, data, transferred);
         } else {
-            fprintf(stderr, "数据接收失败\n");
+            fprintf(stderr, "数据接收失败, r:%d, transferred:%d\n", r, transferred);
         }
 
         if (transferred < 512)
