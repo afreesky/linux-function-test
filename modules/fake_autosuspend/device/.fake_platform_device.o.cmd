@@ -1,1 +1,0 @@
-cmd_/data/Projects/project/modules/fake_autosuspend/device/fake_platform_device.o := ld  -m elf_x86_64 -z noexecstack     -r -o /data/Projects/project/modules/fake_autosuspend/device/fake_platform_device.o /data/Projects/project/modules/fake_autosuspend/device/main.o

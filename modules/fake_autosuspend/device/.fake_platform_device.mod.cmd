@@ -1,1 +1,0 @@
-cmd_/data/Projects/project/modules/fake_autosuspend/device/fake_platform_device.mod := { echo  /data/Projects/project/modules/fake_autosuspend/device/main.o;  echo; } > /data/Projects/project/modules/fake_autosuspend/device/fake_platform_device.mod

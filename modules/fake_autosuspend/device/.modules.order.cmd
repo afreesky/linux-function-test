@@ -1,1 +1,0 @@
-cmd_/data/Projects/project/modules/fake_autosuspend/device/modules.order := {   echo /data/Projects/project/modules/fake_autosuspend/device/fake_platform_device.ko; :; } | awk '!x[$$0]++' - > /data/Projects/project/modules/fake_autosuspend/device/modules.order

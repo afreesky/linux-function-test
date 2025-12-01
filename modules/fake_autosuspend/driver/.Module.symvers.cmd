@@ -1,1 +1,0 @@
-cmd_/data/Projects/project/modules/fake_autosuspend/driver/Module.symvers := sed 's/\.ko$$/\.o/' /data/Projects/project/modules/fake_autosuspend/driver/modules.order | scripts/mod/modpost -m -a  -o /data/Projects/project/modules/fake_autosuspend/driver/Module.symvers -e -i Module.symvers   -T -
