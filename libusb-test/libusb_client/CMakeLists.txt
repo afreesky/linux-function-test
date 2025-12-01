@@ -21,5 +21,5 @@ target_link_libraries(${PROJECT_NAME} usb-1.0)
 target_compile_options(
   ${PROJECT_NAME}
   PRIVATE
-    $<$<COMPILE_LANGUAGE:C>:-std=c99;-Wall;-Wextra;-Wunused-macros;-Wmissing-braces;-Wno-unused-parameter;-Wmissing-include-dirs>
+  $<$<COMPILE_LANGUAGE:C>:-std=c99;-Wall;-Wextra;-Wunused-macros;-Wmissing-braces;-Wno-unused-parameter;-Wmissing-include-dirs;-W1,-Map>
 )
