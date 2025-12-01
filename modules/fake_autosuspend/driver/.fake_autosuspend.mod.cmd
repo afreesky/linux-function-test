@@ -1,0 +1,1 @@
+cmd_/data/Projects/project/modules/fake_autosuspend/driver/fake_autosuspend.mod := { echo  /data/Projects/project/modules/fake_autosuspend/driver/main.o /data/Projects/project/modules/fake_autosuspend/driver/debugfs.o;  echo; } > /data/Projects/project/modules/fake_autosuspend/driver/fake_autosuspend.mod

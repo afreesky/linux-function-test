@@ -1,0 +1,1 @@
+cmd_/data/Projects/project/modules/fake_autosuspend/device/Module.symvers := sed 's/\.ko$$/\.o/' /data/Projects/project/modules/fake_autosuspend/device/modules.order | scripts/mod/modpost -m -a  -o /data/Projects/project/modules/fake_autosuspend/device/Module.symvers -e -i Module.symvers   -T -

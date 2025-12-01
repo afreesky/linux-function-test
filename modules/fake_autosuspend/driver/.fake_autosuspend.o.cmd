@@ -1,0 +1,1 @@
+cmd_/data/Projects/project/modules/fake_autosuspend/driver/fake_autosuspend.o := ld  -m elf_x86_64 -z noexecstack     -r -o /data/Projects/project/modules/fake_autosuspend/driver/fake_autosuspend.o /data/Projects/project/modules/fake_autosuspend/driver/main.o /data/Projects/project/modules/fake_autosuspend/driver/debugfs.o
