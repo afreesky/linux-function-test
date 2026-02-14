@@ -1,0 +1,52 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Virtual PCIe over Ethernet driver configuration
+#
+
+config VIRTUAL_PCIE
+    tristate "Virtual PCIe over Ethernet support"
+    depends on PCI && NET && NETDEVICES
+    help
+      This enables virtual PCIe transport over Ethernet using TCP sockets.
+      This creates virtual PCIe Root Complex and Endpoint devices
+      that communicate via Ethernet sockets.
+
+      This driver is useful for:
+      - Testing PCIe device drivers without real hardware
+      - Virtual PCIe device development and debugging
+      - Educational purposes
+
+      If unsure, say N.
+
+config VIRTUAL_PCIE_DEBUG
+    int "Virtual PCIe debug level (0-3)"
+    depends on VIRTUAL_PCIE
+    default 1
+    range 0 3
+    help
+      Set debug verbosity:
+      0 - Errors only
+      1 - Warnings and errors
+      2 - Informational messages
+      3 - Verbose debugging output
+
+config VIRTUAL_PCIE_LOOPBACK
+    bool "Enable loopback testing mode"
+    depends on VIRTUAL_PCIE
+    help
+      Enable loopback mode for self-testing without remote device.
+      This allows testing the driver locally without network connection.
+
+config VIRTUAL_PCIE_DEFAULT_IP
+    string "Default remote IP address"
+    depends on VIRTUAL_PCIE
+    default "192.168.1.100"
+    help
+      Default IP address for the remote virtual PCIe device.
+
+config VIRTUAL_PCIE_DEFAULT_PORT
+    int "Default port number"
+    depends on VIRTUAL_PCIE
+    default 8888
+    help
+      Default TCP port number for virtual PCIe communication.
