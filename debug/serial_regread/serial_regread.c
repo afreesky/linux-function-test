@@ -45,11 +45,18 @@ RegInfo regs[] = {
     {"HS_IF_PLL_CFG_DSKEWCAL",0xd055088},
     {"HS_IF_PLL_CFG_DSKEWCAL_VALUE",0xd05508c},
     {"HS_IF_PLL_CFG_FRAC",0xd055090},
+    {"HS_IF_PLL_CFG_FREQ_SET_1",0xd055094},
+    {"HS_IF_PLL_CFG_FREQ_SET_2",0xd055098},
+    {"HS_IF_PLL_CFG_FREQ_SET_3", 0xd05509c},
     {"SW_RST_N_PHYS",0xd0550a0},
     {"SW_RST_N_AMBA",0xd0550a4},
+    {"SW_RST_N_USB_PCIE",0xd0550a8},
     {"SW_RST_N_ETH_RX",0xd0550ac},
     {"SW_RST_N_ETH_TX", 0xd0550b0},
     {"SW_RST_N_PCIE", 0xd0550b4},
+    {"CLK_EN_AMBA", 0xd0550b8},
+    {"CLK_EN_USB", 0xd0550bc},
+    {"CLK_EN_PCIE", 0xd0550c0},
     {"CLK_EN_ETH_RX", 0xd0550c4},
     {"CLK_EN_ETH_TX", 0xd0550c8},
     {"ETH_RGMII_TX_CLK_SOURCE_CFG", 0xd0550cc},
@@ -58,6 +65,8 @@ RegInfo regs[] = {
     {"MP_PHY_PHY_EN_REFCLK", 0xd0551f4},
     {"MP_PHY_STATUS_DEBUG0_REG", 0xd0551f8},
     {"MP_PHY_STATUS_DEBUG1_REG", 0xd0551fc},
+    {"ETH_STATUS_DEBUG0_REG", 0xd055200},
+    {"MP_PHY_FULLRT_CLK_AND_GATE", 0xd0552d0},
     /* 可继续添加 */
 };
 int reg_count = sizeof(regs) / sizeof(regs[0]);
