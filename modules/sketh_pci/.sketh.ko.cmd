@@ -1,0 +1,1 @@
+cmd_/data/Projects/linux-function-test/sketh_pci/sketh.ko := ld -r  -m elf_x86_64 -z noexecstack   --build-id=sha1  -T scripts/module.lds -o /data/Projects/linux-function-test/sketh_pci/sketh.ko /data/Projects/linux-function-test/sketh_pci/sketh.o /data/Projects/linux-function-test/sketh_pci/sketh.mod.o;  true

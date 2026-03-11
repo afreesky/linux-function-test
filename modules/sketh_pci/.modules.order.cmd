@@ -1,0 +1,1 @@
+cmd_/data/Projects/linux-function-test/sketh_pci/modules.order := {   echo /data/Projects/linux-function-test/sketh_pci/sketh.ko; :; } | awk '!x[$$0]++' - > /data/Projects/linux-function-test/sketh_pci/modules.order

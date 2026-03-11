@@ -1,0 +1,1 @@
+cmd_/data/Projects/linux-function-test/sketh_pci/Module.symvers := sed 's/\.ko$$/\.o/' /data/Projects/linux-function-test/sketh_pci/modules.order | scripts/mod/modpost -m -a  -o /data/Projects/linux-function-test/sketh_pci/Module.symvers -e -i Module.symvers   -T -
