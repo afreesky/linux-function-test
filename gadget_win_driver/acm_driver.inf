@@ -1,0 +1,66 @@
+; Linux Gadget ACM Serial Driver INF File
+; VID: 0x0123, PID: 0x0456
+; Generated for USB Serial Device
+
+[Version]
+Signature = "$Windows NT$"
+Class = Ports
+ClassGuid = {4d36e978-e325-11ce-bfc1-08002be10318}
+Provider = %ProviderName%
+DriverVer = 03/11/2026,1.0.0.0
+CatalogFile = acm_driver.cat
+
+[Manufacturer]
+%ManufacturerName% = DeviceSection
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+acm_driver.cat = 1
+
+; ------------------------------------------------------------------------------
+; Device Section - ACM Serial
+; ------------------------------------------------------------------------------
+[DeviceSection]
+%DeviceDesc% = DriverInstall, USB\VID_0123&PID_0456&MI_00
+
+[DriverInstall]
+CopyFiles = DriverCopyFiles
+AddReg = DriverAddReg
+
+[DriverCopyFiles]
+acm_driver.cat
+
+[DriverAddReg]
+HKR,,DeviceCharacteristics,0x10001,0x1         ; Use same device stack
+HKR,,DriverPackageType,0x00000,1               ; Plug-and-play
+
+; ------------------------------------------------------------------------------
+; Interface Section
+; ------------------------------------------------------------------------------
+[DriverInstall.Services]
+AddService = usbser, 0x2, ServiceInstall, EventLogAddService
+
+[ServiceInstall]
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\usbser.sys
+LoadOrderGroup = Base
+
+[EventLogAddService]
+HKR,,EventMessageFile,0x00020000,"%SystemRoot%\System32\IoLogMsg.dll;%SystemRoot%\System32\drivers\usbser.sys"
+HKR,,TypesSupported,0x00011,7
+
+; ------------------------------------------------------------------------------
+; Strings
+; ------------------------------------------------------------------------------
+[Strings]
+ProviderName = "Linux Gadget Driver"
+ManufacturerName = "Linux Gadget Manufacturer"
+DeviceDesc = "Linux Gadget ACM Serial Device"
+DiskName = "Linux Gadget Driver Disk"

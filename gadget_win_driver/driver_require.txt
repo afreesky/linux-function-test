@@ -1,0 +1,7 @@
+说明：
+我们现在有一个linux usb gadget设备， vid和pid都是自定义值，虚拟出来一个ACM串口和一个NCM网口。
+现在需要将此linux gadget设备插入到windows 11使用， 通常需要添加一个INF驱动, 并且需要微软的签名
+
+需求：
+1. 仿照zadig的做法， 生成ACM和NCM的驱动INFO文件， 同时生成可用导入到windows的签名证书，对INFO签名
+2. 提供完整的windows下安装驱动的步骤

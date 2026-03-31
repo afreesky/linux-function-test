@@ -1,0 +1,83 @@
+; Linux Gadget NCM Network Driver INF File
+; VID: 0x0123, PID: 0x0456
+; Generated for USB NCM Network Device
+
+[Version]
+Signature = "$Windows NT$"
+Class = Net
+ClassGuid = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider = %ProviderName%
+DriverVer = 03/11/2026,1.0.0.0
+CatalogFile = ncm_driver.cat
+
+[Manufacturer]
+%ManufacturerName% = DeviceSection
+
+[DestinationDirs]
+DefaultDestDir = 12
+NDISCopyFiles = 11
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+ncm_driver.cat = 1
+
+; ------------------------------------------------------------------------------
+; Device Section - NCM Network
+; ------------------------------------------------------------------------------
+[DeviceSection]
+%DeviceDesc% = DriverInstall, USB\VID_0123&PID_0456&MI_02
+
+[DriverInstall]
+CopyFiles = NDISCopyFiles
+AddReg = DriverAddReg
+
+[NDISCopyFiles]
+ncm_driver.cat
+
+[DriverAddReg]
+HKR,,DeviceCharacteristics,0x10001,0x1
+HKR,,DriverPackageType,0x00000,1
+
+; ------------------------------------------------------------------------------
+; NDIS Service Install
+; ------------------------------------------------------------------------------
+[DriverInstall.Services]
+AddService = wdmncm, 0x2, ServiceInstall, EventLogAddService
+
+[ServiceInstall]
+ServiceType    = 1
+StartType      = 3
+ErrorControl   = 1
+ServiceBinary  = %12%\wdmncm.sys
+LoadOrderGroup = NDIS
+
+[EventLogAddService]
+HKR,,EventMessageFile,0x00020000,"%SystemRoot%\System32\IoLogMsg.dll"
+HKR,,TypesSupported,0x00011,7
+
+; ------------------------------------------------------------------------------
+; Interface Configuration
+; ------------------------------------------------------------------------------
+[DriverInstall.Ndi]
+HKR,,DeviceName,,"GadgetNCM"
+HKR,,DriverDesc,,"Linux Gadget NCM Network Device"
+Ndi = DeviceParams
+DeviceParams = DeviceSettings
+
+[DeviceSettings]
+; NCM-specific settings are handled by wdmncm.sys
+
+[DeviceParams]
+; Enable jumbo frames if supported
+; HKR.,*JumboFrame,0x00010001,1514
+
+; ------------------------------------------------------------------------------
+; Strings
+; ------------------------------------------------------------------------------
+[Strings]
+ProviderName = "Linux Gadget Driver"
+ManufacturerName = "Linux Gadget Manufacturer"
+DeviceDesc = "Linux Gadget NCM Network Device"
+DiskName = "Linux Gadget Driver Disk"

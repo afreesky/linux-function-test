@@ -1,0 +1,15 @@
+构造一个linux下的以太网PFC pause帧发包程序，详细需求：
+使用PF_PACKET socket，绑定端口名在用户执行程序时通过参数指定
+
+Destination Address | Source Address | Type (MAC Control Frame) | Pause Opcode | Priority Enable Vector |  Pause Time
+0x0180C2000001      |  6 bytes       |    0x8808                |   0x0101     |  2 bytes               |8 * 2 bytes
+
+Transmitted pause frames comprise of the following:
+• A destination address of 01-80-C2-00-00-01
+• A source address taken from specific address register 1
+• A type ID of 88-08 (MAC control frame)
+• A pause opcode of 01-01
+• A priority enable vector taken from tx_pfc_pause or the transmit pfc pause regist
+• 8 pause quantum registers
+• Fill of 00 to take the frame to minimum frame length
+• Valid FCS
