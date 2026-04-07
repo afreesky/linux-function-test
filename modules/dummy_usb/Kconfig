@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: GPL-2.0
+#
+# Kconfig for USB over Ethernet
+#
+
+config USB_OVER_ETHERNET
+    tristate "USB over Ethernet support"
+    help
+      This driver provides USB over Ethernet functionality,
+      allowing USB devices to be accessed over a network connection.
+
+      This enables two kernel modules:
+      - usb_over_ethernet_hcd: Host Controller Driver
+      - usb_over_ethernet_udc: USB Device Controller
+
+      Select Y or M to enable this feature.
+
+if USB_OVER_ETHERNET
+
+config USB_OVER_ETHERNET_HCD
+    tristate "USB over Ethernet HCD (Host side)"
+    depends on USB
+    help
+      This module implements a USB Host Controller Driver that
+      communicates with a remote USB device over UDP/Ethernet.
+
+      Enable this on the host PC side.
+
+      To load: insmod usb_over_ethernet_hcd.ko remote_ip=<device_ip>
+
+config USB_OVER_ETHERNET_UDC
+    tristate "USB over Ethernet UDC (Device side)"
+    depends on USB_GADGET
+    help
+      This module implements a USB Device Controller that
+      communicates with a remote USB host over UDP/Ethernet.
+
+      Enable this on the device PC side.
+
+      To load: insmod usb_over_ethernet_udc.ko listen_port=5555
+
+endif # USB_OVER_ETHERNET
